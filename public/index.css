@@ -1,0 +1,66 @@
+/* Add your styling for the sidebar and table here */
+#root {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+#parkingInfo {
+/* Apply these styles to your <div> */
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style the <p> elements inside the <div> */
+#parkingInfo p {
+    margin: 5px 0; /* Add spacing between paragraphs */
+    font-size: 18px; /* Adjust the font size as needed */
+}
+#container {
+    max-width: 70%;
+}
+video {
+    margin-left: 16px;
+    flex: 1;
+}
+#side_bar {
+    max-width: 30%; /* Adjusted max-width */
+    height: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-sizing: border-box; /* Added to include padding in width calculation */
+}
+
+#car_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#car_table th,
+#car_table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+#car_table th {
+    background-color: #e0e0e0;
+}
+
+/* Add this CSS to your style sheet (index.css) */
+#videoSelector {
+    width: 200px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#selectedVideo {
+    max-width: 640px;
+    height: auto;
+    display: block;
+}

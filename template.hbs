@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streaming Video from Chip</title>
+    <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+<body>
+<div id="root">
+    <div id="container">
+        <!-- Add this select element to your Handlebars template -->
+
+        <div id="parkingInfo">
+            <p>
+                {{parking.nameParking}} - {{parking.address}}
+            </p>
+            <p>
+                Empty Slot : {{parking.Value_empty_slot}}
+            </p>
+        </div>
+        <div style="display: flex">
+            <select id="videoSelector" onchange="changeVideo()" style="height: 50px">
+                <option value="">-- Select Video --</option>
+                {{#each videos}}
+                    <option value="{{id}}">{{id}}</option>
+                {{/each}}
+            </select>
+            <video id="selectedVideo" autoplay width="1290" height="640" controls>
+                <!-- The selected video will be displayed here -->
+            </video>
+        </div>
+
+
+
+    </div>
+    <div id="side_bar">
+        <table id="car_table">
+            <thead>
+            <tr>
+                <th>Car Number</th>
+                <th>Check-In Time</th>
+                <th>Check-Out Time</th>
+                <th>Total Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- data put down here -->
+            {{#each rfs}}
+                <tr>
+                    <td>{{plate}}</td>
+                    <td>{{timeCheckin}}</td>
+                    <td>{{timeCheckout}}</td>
+                    <td>{{payment}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <form action="/submit" method="post">
+            <label for="plate">Plate:</label>
+            <input type="text" id="plate" name="plate" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<!--<script src="script.js"></script>-->
+
+<script>
+    // Add this JavaScript code to handle video selection and display
+    function changeVideo() {
+        const videoSelector = document.getElementById("videoSelector");
+        const selectedVideo = document.getElementById("selectedVideo");
+        const selectedVideoId = videoSelector.value;
+        const data = {
+            videos: [
+                { id: '1', src: '/video1.mp4' },
+                { id: '2', src: '/video2.mp4' },
+                { id: '3', src: '/video3.mp4' },
+                { id: '4', src: 'https://www.example.com/path-to-your-video.mp4' }
+            ]
+        };
+        // Find the selected video in the data based on its ID
+        const selectedVideoData = data.videos.find(video => video.id === selectedVideoId);
+        console.log(selectedVideoData)
+        if (selectedVideoData) {
+            selectedVideo.src = selectedVideoData.src;
+            selectedVideo.load();
+        } else {
+            // Clear the video if no video is selected
+            selectedVideo.src = "";
+        }
+    }
+</script>
+</body>
+</html>
