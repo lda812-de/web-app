@@ -36,10 +36,10 @@
         <table id="car_table">
             <thead>
             <tr>
-                <th>Car Number</th>
-                <th>Check-In Time</th>
-                <th>Check-Out Time</th>
-                <th>Total Cost</th>
+                <th>Biển số xe</th>
+                <th>Thời gian vào</th>
+                <th>Thời gian ra</th>
+                <th width="120px">Tổng tiền</th>
             </tr>
             </thead>
             <tbody>
@@ -54,14 +54,15 @@
             {{/each}}
             </tbody>
         </table>
-        <form action="/submit" method="post">
-            <label for="plate">Plate:</label>
-            <input type="text" id="plate" name="plate" required><br><br>
-            <input type="submit" value="Submit">
+        <form action="/submit" class="form-plate" method="post">
+            <div class="form-group">
+                <label for="plate">Biển số xe:</label>
+                <input type="text" id="plate" name="plate" required><br><br>
+            </div>
+            <input class="vs-button" type="submit" value="Submit">
         </form>
     </div>
 </div>
-<!--<script src="script.js"></script>-->
 
 <script>
     // Add this JavaScript code to handle video selection and display
@@ -74,7 +75,7 @@
                 { id: '1', src: '/video1.mp4' },
                 { id: '2', src: '/video2.mp4' },
                 { id: '3', src: '/video3.mp4' },
-                { id: '4', src: 'https://www.example.com/path-to-your-video.mp4' }
+                { id: '4', src: '/video4.mp4' },
             ]
         };
         // Find the selected video in the data based on its ID
