@@ -43,13 +43,23 @@
             </tr>
             </thead>
             <tbody>
-            <!-- data put down here -->
             {{#each rfs}}
                 <tr>
                     <td>{{plate}}</td>
                     <td>{{timeCheckin}}</td>
                     <td>{{timeCheckout}}</td>
-                    <td>{{payment}}</td>
+                    {{#if timeCheckout}}
+                        <td>{{payment}}</td>
+                    {{else}}
+                        <td>
+                            <form action="/payment" method="post">
+                                <input name="_id" hidden value="{{_id}}" />
+                                <button type="submit" class="vs-button">
+                                Thanh toán
+                            </button>
+                            </form>
+                        </td>
+                    {{/if}}
                 </tr>
             {{/each}}
             </tbody>

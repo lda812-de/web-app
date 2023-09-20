@@ -26,6 +26,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 client.connect()
     .then(async () => {
+        app.post("/payment", async (req, res) => {
+
+            let id = req.body?._id;
+            if (!id) {
+                throw new Error("Chưa truyền id lên");
+            }
+
+            try {
+                const database = client.db('ATH_UET');
+                const RFCollection = database.collection('RFid');
+
+                // Find the RFItem by its _id
+                // if (!RFItem) {
+                //     throw new Error("Không tìm thấy mục RF với id đã cung cấp");
+                // }
+
+                // RFItem.timeCheckout = new Date();
+                const updateResult = await RFCollection.updateOne(
+                    { _id: new ObjectId(id) }, // Correctly formatted _id
+                    { $set: { timeCheckout: new Date() } });
+                if (updateResult.modifiedCount === 1) {
+                    console.log(`Cập nhật thành công cho RFItem có id ${id}`);
+                    res.redirect('/');
+                } else {
+                    console.error(`Không cập nhật RFItem có id ${id}`);
+                }
+            } catch (error) {
+                console.error('Lỗi:', error);
+                // Handle error
+            }
+
+        });
         console.log('Connected to MongoDB');
         app.post('/submit', async (req, res) => {
             const formData = req.body;
@@ -68,6 +100,13 @@ client.connect()
                     .sort({ lastModified: 1 }) // 1 for ascending order, -1 for descending
                     .limit(10)
                     .toArray();
+
+                console.log(RFs)
+                // RFs.forEach(rf => {
+                //     if (!rf?.timeCheckout):
+                //
+                // });
+
                 readFile(templatePath, 'utf-8', (err, templateContent) => {
                     if (err) {
                         res.status(500).send('Error loading the template.');
