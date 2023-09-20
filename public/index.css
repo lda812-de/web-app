@@ -1,3 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    padding: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 /* Add your styling for the sidebar and table here */
 #root {
     display: flex;
@@ -26,9 +43,10 @@ video {
     flex: 1;
 }
 #side_bar {
-    max-width: 30%; /* Adjusted max-width */
+    border-radius: 12px;
+    max-width: 35%; /* Adjusted max-width */
     height: 100%;
-    background-color: #f2f2f2;
+    background-color: #f4f4f4;
     padding: 20px;
     box-sizing: border-box; /* Added to include padding in width calculation */
 }
@@ -37,13 +55,24 @@ video {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border-radius: 18px;
+    overflow: hidden;
 }
 
 #car_table th,
 #car_table td {
-    border: 1px solid #ccc;
+    border: 1px solid #f6f6f6;
     padding: 8px;
     text-align: center;
+}
+
+#car_table tr:nth-child(2n) {
+    background-color: #fdfdfd;
+}
+
+#car_table tr:hover,
+#car_table tr:nth-child(2n) {
+    background-color: #f1f1f1;
 }
 
 #car_table th {
@@ -54,13 +83,68 @@ video {
 #videoSelector {
     width: 200px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #e9e9e9;
+    border-radius: 16px;
+    padding: 6px 10px;
+    outline: none;
     margin-bottom: 20px;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 #selectedVideo {
     max-width: 640px;
     height: auto;
+    border-radius: 12px;
     display: block;
+}
+
+.form-plate {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.form-plate .form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vs-button {
+    background-color: #195bff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#plate {
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+#plate:focus {
+    padding-left: 14px;
+}
+
+@media screen and (max-width: 1300px) {
+    #root {
+        flex-direction: column;
+    }
+
+    #container {
+        max-width: unset;
+    }
+
+    #side_bar {
+        max-width: unset;
+    }
 }
